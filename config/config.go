@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"sync"
 
-	"github.com/jmoiron/sqlx"
+	"github.com/jinzhu/gorm"
 )
 
 const (
@@ -19,10 +19,10 @@ const (
 	DB_PORT = "5432"
 )
 
-var db *sqlx.DB
+var db *gorm.DB
 var dbOnce sync.Once
 
-func GetDB() *sqlx.DB {
+func GetDB() *gorm.DB {
 	dbOnce.Do(func() {
 		var err error
 		var conn string
@@ -35,13 +35,10 @@ func GetDB() *sqlx.DB {
 			DB_NAME,
 		)
 
-		db, err := sqlx.Connect("postgres", conn)
+		db, err = gorm.Open("postgres", conn)
 		if nil != err {
 			panic(err)
 		}
-
-		db.SetMaxOpenConns(1024)
-		db.SetMaxIdleConns(512)
 	})
 	return db
 }
