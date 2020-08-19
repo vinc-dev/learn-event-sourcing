@@ -39,6 +39,9 @@ func GetDB() *gorm.DB {
 		if nil != err {
 			panic(err)
 		}
+
+		db.DB().SetMaxOpenConns(1024)
+		db.DB().SetMaxIdleConns(512)
 	})
 	return db
 }
