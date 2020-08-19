@@ -1,13 +1,14 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"net/http"
 	"time"
 
 	"github.com/spf13/cast"
 	"github.com/vinc-dev/learn-event-sourcing/config"
-	"github.com/vinc-dev/learn-event-sourcing/transport"
+	transport "github.com/vinc-dev/learn-event-sourcing/transport/http/router"
 )
 
 func main() {
@@ -25,9 +26,9 @@ func main() {
 		h = r
 	}
 	// Init boot time
-	start = time.Now()
+	start := time.Now()
 	// Print boot time elapsed
-	log.Println("Boot Time: %s", time.Since(start))
+	log.Println(fmt.Sprintf("Boot Time: %s", time.Since(start)))
 	// Start server and logs when router is error
 	log.Println("error while listening to incoming request", http.ListenAndServe(port, h))
 }

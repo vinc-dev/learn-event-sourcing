@@ -1,8 +1,6 @@
 package main
 
-import {
-	"github.com/vinc-dev/learn-event-sourcing/transport"
-}
+import transport "github.com/vinc-dev/learn-event-sourcing/transport/http/router"
 
 func routes(r *transport.Router) {
 
