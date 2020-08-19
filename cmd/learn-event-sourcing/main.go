@@ -1,4 +1,4 @@
-package main
+package learn_event_sourcing
 
 import (
 	"fmt"
@@ -14,7 +14,7 @@ import (
 func main() {
 	// Init Routers
 	port := ":" + cast.ToString(config.ConfServerPort)
-	r := transport.NewRouter("", routes)
+	r := transport.NewRouter("", transport.V1)
 	// Init Handler
 	var h http.Handler
 	// Check CORS Config
